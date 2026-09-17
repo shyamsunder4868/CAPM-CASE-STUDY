@@ -4,16 +4,37 @@ using { smartpay as db } from '../db/schema';
 @protocol: 'rest'
 service ProcessingService @(path:'/processing') {
 
-  action pollMailbox() returns { messagesFound: Integer; documentsQueued: Integer; };
-  action runExtraction(documentId: UUID) returns db.InvoiceHeader;
-  action runValidation(invoiceId: UUID) returns db.ValidationRun;
-  action postToLedgerOrErp(invoiceId: UUID) returns { posted: Boolean; integrationEventId: UUID; };
+  
+  @cds.redirection.target
+  entity InvoiceHeaders as projection on db.InvoiceHeader;
 
-  @readonly
+  
+  entity ValidationRuns as projection on db.ValidationRun;
+
+  action pollMailbox()
+    returns {
+      messagesFound: Integer;
+      documentsQueued: Integer;
+    };
+
+  action runExtraction(documentId: UUID)
+    returns InvoiceHeaders;
+
+  action runValidation(invoiceId: UUID)
+    returns ValidationRuns;
+
+  action postToLedgerOrErp(invoiceId: UUID)
+    returns {
+      posted: Boolean;
+      integrationEventId: UUID;
+    };
+
+  
   entity PendingExtractions as projection on db.InvoiceDocument
-    where rawExtractionJson = null;
+    where rawExtractionJson is null;
 
-  @readonly
+  
   entity ReadyToPayQueue as projection on db.InvoiceHeader
-    where readyToPayFlag = true and processingStatus <> 'PAID';
+    where readyToPayFlag = true
+      and processingStatus <> 'PAID';
 }
