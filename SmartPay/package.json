@@ -17,6 +17,16 @@
   "private": true,
   "cds": {
     "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "buyer":    { "password": "buyer",    "roles": ["Buyer"] },
+          "ap":       { "password": "ap",       "roles": ["AP_Lead"] },
+          "admin":    { "password": "admin",    "roles": ["Admin"] },
+          "supplier": { "password": "supplier", "roles": ["Supplier"] },
+          "system":   { "password": "system",   "roles": ["system-service"] }
+        }
+      },
       "[production]": {
         "auth": "xsuaa"
       },
