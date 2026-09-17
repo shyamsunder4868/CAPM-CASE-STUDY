@@ -10,6 +10,26 @@
     {
       "name": "$XSAPPNAME.emmanagement",
       "description": "Enterprise-Messaging Management Access"
+    },
+    {
+      "name": "$XSAPPNAME.Buyer",
+      "description": "Buyer"
+    },
+    {
+      "name": "$XSAPPNAME.AP_Lead",
+      "description": "AP_Lead"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
+    },
+    {
+      "name": "$XSAPPNAME.system-service",
+      "description": "system-service"
+    },
+    {
+      "name": "$XSAPPNAME.Supplier",
+      "description": "Supplier"
     }
   ],
   "attributes": [],
