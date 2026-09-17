@@ -208,14 +208,14 @@ entity AuditEvent : cuid {
   performedAt       : Timestamp;
 }
 
-// entity IntegrationEvent : cuid {
-//   channel      : String(20) enum { EMAIL; PORTAL; ERP; };
-//   eventType    : String(50);                        // e.g. MAIL_RECEIVED, MALWARE_SCAN, ERP_POST
-//   status       : String(20) enum { RECEIVED; PROCESSED; FAILED; };
-//   payloadRef   : String(1000);
-//   errorMessage : String(1000);
-//   occurredAt   : Timestamp;
-// }
+entity IntegrationEvent : cuid {
+  channel      : String(20) enum { EMAIL; PORTAL; ERP; };
+  eventType    : String(50);                        // e.g. MAIL_RECEIVED, MALWARE_SCAN, ERP_POST
+  status       : String(20) enum { RECEIVED; PROCESSED; FAILED; };
+  payloadRef   : String(1000);
+  errorMessage : String(1000);
+  occurredAt   : Timestamp;
+}
 
 
 
